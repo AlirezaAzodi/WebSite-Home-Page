@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf8">
+<head>
+    <meta charset="UTF-8">
+    <title>My website</title>
+    <style>
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+         .slider-container {
+             width: 500px;
+             overflow: hidden;
+             position: relative;
+             margin: 0 auto;
+         }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+        .btn {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .images-container {
+            display: flex;
+            align-items: flex-end;
+        }
+        .image {
+            flex: 1;
+        }
+        .parent {
+            border: 1px solid black;
+            margin: 1rem;
+            padding: 2rem 2rem;
+            text-align: center;
+        }
+        .child {
+            display: inline-block;
+            border: 1px solid red;
+            padding: 1rem 1rem;
+            vertical-align: middle;
+            width: 40%;
+            height: 40%;
+        }
+        .joker {
+            padding: 30px;
+            width: 100%;
+            height: 60%;
+            text-align: right;
+        }
+        h2 {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+        }
+        h3{
+            text-align: right;
+        }
+        footer{
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+
+        }
+    </style>
+</head>
+<body style="background-color:#FAF5E9">
+<header>
+    <h1>به وبسایت معرفی فیلم خوش آمدید</h1>
+</header>
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slide"><img src="slide1.jpg" alt="Image 1"></div>
+                <div class="slide"><img src="slide2.jpg" alt="Image 2"></div>
+                <div class="slide"><img src="slide3.jpg" alt="Image 3"></div>
+                <div class="slide"><img src="slide4.jpg" alt="Image 4"></div>
+                <div class="slide"><img src="slide5.jpg" alt="Image 5"></div>
+                <div class="slide"><img src="slide6.jpg" alt="Image 6"></div>
+                <div class="slide"><img src="slide7.jpg" alt="Image 7"></div>
+                <div class="slide"><img src="slide8.jpg" alt="Image 8"></div>
+                <div class="slide"><img src="slide9.jpg" alt="Image 9"></div>
+            </div>
+        </div>
+
+        <div class="parent">
+            <div class='child'> <img src="slide8.jpg" alt="تصویر 4">
+            <h1>Scarface</h1>
+            </div>
+            <div class='child'><img src="slide4.jpg" alt="تصویر 5">
+            <h1>Django Unchained</h1>
+            </div>
+            <div class='joker'><img src="slider10.jpg" alt="=تصویر 10"> </div>
+            <h2>The Dark Knight</h2>
+            <h3>تبهکاری به نام جوکر بانکی را سرقت کرده و پس از قتل همدستانش با پول های مسروقه فرار می کند. همزمان اربابان جنایت در گاتام سیتی گرد هم می آیند تا در برابر حملات بتمن و نقشه های ستوان جیم گوردون چاره ای بیندیشند، چون دادستان شهر هاروی دنت نیز تصمیم به مقابله سرسختانه با تبهکاران گرفته و این سه نفر قصد دارند فساد و جنایت را برای همیشه از شهر بزدایند.
+                تبهکاران از طریق حسابدار چینی شان لائو خبردار می شوند که پلیس قصد حمله به ذخیره مالی شان دارد و تصمیم به خروج آن از کشور می گیرند</h3>
+        </div>
+        <footer>تماس با ما
+        <p>فیلم های پسندیده شده</p>
+            <p>ورود کاربران</p>
+        </footer>
+
+    <script>
+        const slider = document.querySelector(".slider");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+        let index = 0;
+
+
+        function goToNextSlide() {
+            index++;
+            if (index === slider.children.length) {
+                index = 0;
+            }
+            updateSliderPosition();
+        }
+
+
+        function goToPreviousSlide() {
+            index--;
+            if (index < 0) {
+                index = slider.children.length - 1;
+            }
+            updateSliderPosition();
+        }
+
+
+        function updateSliderPosition() {
+            const slideWidth = slider.clientWidth;
+            slider.style.transform = `translateX(-${index * slideWidth}px)`;
+        }
+
+
+        setInterval(goToNextSlide, 3000);
+
+
+        prevButton.addEventListener("click", goToPreviousSlide);
+        nextButton.addEventListener("click", goToNextSlide);
+        let currentSlide = 0;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlider();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlider();
+            }
+        }
+
+        function updateSlider() {
+            const slider = document.querySelector('.slider');
+            const slideWidth = document.querySelector('.slide').offsetWidth;
+            slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+            var previousButton = document.getElementById("previous-button");
+        }
+    </script>
+
+
+</body>
+</html>
